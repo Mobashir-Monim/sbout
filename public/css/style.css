@@ -1,0 +1,169 @@
+::-webkit-file-upload-button {
+    font-weight: 500 !important;
+    border: 0px;
+    height: inherit;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    color: #fff;
+    background-color: #343a40;
+    border-color: #343a40;
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+}
+
+input[type=file] {
+    padding: 0;
+    overflow: hidden;
+}
+  
+::-webkit-file-upload-button:hover {
+    color: #fff;
+    background-color: #23272b;
+    border-color: #1d2124;
+}
+  
+::-webkit-file-upload-button:focus,
+::-webkit-file-upload-button.focus {
+    color: #fff;
+    background-color: #23272b;
+    border-color: #1d2124;
+    box-shadow: 0 0 0 0.2rem rgba(82, 161, 225, 0.5);
+}
+  
+::-webkit-file-upload-button.disabled,
+::-webkit-file-upload-button:disabled {
+    color: #fff;
+    background-color: #343a40;
+    border-color: #343a40;
+}
+  
+::-webkit-file-upload-button:not(:disabled):not(.disabled):active,
+::-webkit-file-upload-button:not(:disabled):not(.disabled).active,
+.show > ::-webkit-file-upload-button.dropdown-toggle {
+    color: #fff;
+    background-color: #1d2124;
+      border-color: #171a1d;
+}
+  
+::-webkit-file-upload-button:not(:disabled):not(.disabled):active:focus,
+::-webkit-file-upload-button:not(:disabled):not(.disabled).active:focus,
+.show > ::-webkit-file-upload-button.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(82, 161, 225, 0.5);
+}
+
+.r-25 {
+    border-radius: 25px;
+}
+
+.min-h {
+    min-height: 80vh;
+}
+
+.hidden {
+    display: none;
+}
+
+.curbed-font-size {
+    font-size: 0.8em !important;
+}
+
+.course-thumbnail-3 {
+    height: 130px;
+    background-color: rgb(204, 204, 204);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.course-thumbnail-12 {
+    height: 30vh;
+    background-color: rgb(204, 204, 204);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.course-card {
+    height: 230px;
+}
+
+.course-card-short {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.line-cap-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.material-icon-link {
+    font-size: 2.2em;
+}
+
+.material-icon-link:hover {
+    text-decoration: none;
+}
+
+.no-hover-text-decor:hover, .no-hover-text-decor:focus {
+    text-decoration: none !important;
+}
+
+.hoverable-card-container {
+    padding: 20px;
+    transition: all 0.2s ease-in-out;
+}
+
+.hoverable-card-container:hover {
+    padding-top: 10px;
+}
+
+.hoverable-card-container .card-img-top {
+    background-color: rgba(23, 23, 23, 0);
+    background-blend-mode: overlay;
+    transition: all 0.2s ease-in-out;
+}
+
+.hoverable-card-container:hover .card-img-top {
+    background-color: rgba(23, 23, 23, 0.4);
+}
+
+.hoverable-card-container .card {
+    box-shadow: 4px 7px 7px #ccc;
+    transition: all 0.2s ease-in-out;
+}
+
+.hoverable-card-container:hover .card {
+    box-shadow: 4px 10px 10px #aaa;
+}
+
+.hoverable-card-container .material-icons-round {
+    color: #6c757d;
+    transition: all 0.5s ease-in-out;
+} 
+
+.hoverable-card-container:hover .material-icons-round {
+    color: #3490dc;
+}
+
+.form-control {
+    border-top: 1px solid rgba(206, 212, 218, 0);
+    border-right: 1px solid rgba(206, 212, 218, 0);
+    border-left: 1px solid rgba(206, 212, 218, 0);
+    transition: all 0.2s ease-in;
+}
+
+.form-control:disabled {
+    border-top: 1px solid rgba(206, 212, 218, 1);
+    border-right: 1px solid rgba(206, 212, 218, 1);
+    border-left: 1px solid rgba(206, 212, 218, 1);
+}
+
+.form-control:focus, .form-control:hover {
+    border-top: 1px solid rgba(206, 212, 218, 1);
+    border-right: 1px solid rgba(206, 212, 218, 1);
+    border-left: 1px solid rgba(206, 212, 218, 1);
+}
