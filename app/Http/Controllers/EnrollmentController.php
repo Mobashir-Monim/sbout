@@ -27,8 +27,8 @@ class EnrollmentController extends Controller
 
         $helper = new Register($user, $course);
         
-        if (!$helper->status)
-            flash($helper->status['message']);
+        if (!$helper->status['success'])
+            flash($helper->status['message'])->error();
 
         return $helper->status['redirect'];
     }
