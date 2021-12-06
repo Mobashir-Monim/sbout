@@ -40,7 +40,7 @@
                 
                 <ul class="navbar-nav pr-5 py-1 d-none d-md-block">
                     <li class="nav-item float-right mx-3">
-                        <a class="nav-link d-flex align-items-center" href="#/" onclick="prevent document.getElementById('logout-form').submit()">
+                        <a class="nav-link d-flex align-items-center" href="#/" onclick="document.getElementById('logout-form').submit()">
                             <span class="material-icons-outlined mr-2">power_settings_new</span>
                             <span>Logout</span>
                         </a>
