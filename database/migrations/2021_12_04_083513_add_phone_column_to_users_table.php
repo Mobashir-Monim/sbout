@@ -14,7 +14,7 @@ class AddPhoneColumnToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('phone')->nullable();
+            $table->string('phone')->nullable()->after('password');
         });
     }
 
