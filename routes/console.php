@@ -19,7 +19,8 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote');
 
 Artisan::command('make:view {path}', function($path) {
-    $x = explode('/', $path);
+    $path = str_replace('/', '.', $path);
+    $x = explode('.', $path);
     $filename = array_pop($x);
 
     if (sizeof($x) > 0) {
