@@ -168,6 +168,10 @@ input[type=file] {
     border-left: 1px solid rgba(206, 212, 218, 1);
 }
 
+.navbar-dark .navbar-nav .nav-link {
+    color: #fff;
+}
+
 .navbar-nav .nav-link.active {
     color: #007bff !important;
 }
