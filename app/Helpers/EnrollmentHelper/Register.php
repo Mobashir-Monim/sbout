@@ -51,7 +51,7 @@ class Register extends Helper
 
     public function checkUserOrg()
     {
-        if ($this->course->offered_to != 2 || ($this->course->offered_to == 0 && endsWith($this->user['email'], '@g.bracu.ac.bd')) || ($this->course->offered_to == 1 && !endsWith($this->user['email'], '@g.bracu.ac.bd'))) {
+        if (($this->course->offered_to == 0 && !endsWith($this->user['email'], '@g.bracu.ac.bd')) || ($this->course->offered_to == 1 && endsWith($this->user['email'], '@g.bracu.ac.bd'))) {
             $this->setStatusToFalse('This course is not available for everyone to enroll', redirect()->route('course.show', ['course' => $this->course->id]));
             
             return false;

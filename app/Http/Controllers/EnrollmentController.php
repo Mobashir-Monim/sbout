@@ -5,14 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Course;
 use App\Helpers\EnrollmentHelper\Register;
+use App\Helpers\UserHelper\Updator as UserUpdator;
 
 class EnrollmentController extends Controller
 {
     public function registration(Course $course)
     {
-        if (!is_null(auth()->user()))
-            return redirect()->route('enrollment.register', ['course' => $course]);
-
         return view('enrollment.registration', [
             'course' => $course
         ]);
@@ -20,13 +18,17 @@ class EnrollmentController extends Controller
 
     public function register(Course $course, Request $request)
     {
-        $user = is_null(auth()->user()) ? ['name' => $request->name, 'email' => $request->email, 'phone' => $request->phone] : auth()->user();
+        $user = ['name' => $request->name, 'email' => $request->email, 'phone' => $request->phone];
+
+        if (!is_null(auth()->user())) {
+            (new UserUpdator(auth()->user()))->updatePhone($request->phone);
+            $user = auth()->user();
+        }
 
         $helper = new Register($user, $course);
         
-        if (!$helper->status) {
-            flash($helper->status['message'])->error();
-        }
+        if (!$helper->status)
+            flash($helper->status['message']);
 
         return $helper->status['redirect'];
     }

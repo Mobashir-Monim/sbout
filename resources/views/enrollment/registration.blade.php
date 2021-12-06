@@ -18,7 +18,7 @@
                                 <h5 class="mb-0">Name</h5>
                             </div>
                             <div class="col-md-9">
-                                <input type="text" name="name" class="form-control" placeholder="Full Name">
+                                <input type="text" name="name" class="form-control" placeholder="Full Name" {{ !is_null(auth()->user()) ? 'value=' . auth()->user()->name . ' disabled' : '' }}>
                             </div>
                         </div>
     
@@ -27,7 +27,7 @@
                                 <h5 class="mb-0">Email</h5>
                             </div>
                             <div class="col-md-9">
-                                <input type="email" name="email" class="form-control" placeholder="Email Address">
+                                <input type="email" name="email" class="form-control" placeholder="Email Address" {{ !is_null(auth()->user()) ? 'value=' . auth()->user()->email . ' disabled' : '' }}>
                             </div>
                         </div>
     
@@ -36,7 +36,7 @@
                                 <h5 class="mb-0">Phone</h5>
                             </div>
                             <div class="col-md-9">
-                                <input type="tel" name="phone" class="form-control" placeholder="+880XXXXXXXXXX">
+                                <input type="tel" name="phone" class="form-control" placeholder="+880XXXXXXXXXX" {{ !is_null(auth()->user()) ? 'value=' . auth()->user()->phone : '' }}>
                             </div>
                         </div>
     
@@ -60,7 +60,11 @@
     
                         <div class="row">
                             <div class="col-md-12 d-flex justify-content-between align-items-end">
-                                <a href="{{ route('login') }}" class="btn btn-link">Already have an account?</a>
+                                @guest
+                                    <a href="{{ route('login') }}" class="btn btn-link">Already have an account?</a>
+                                @else
+                                    <span id="filler"></span>
+                                @endguest
                                 <button class="btn btn-dark">Register and proceed to pay</button>
                             </div>
                         </div>

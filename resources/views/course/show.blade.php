@@ -11,7 +11,7 @@
                             {!! $course->description !!}
                         </div>
                         <div class="col-md-3 pt-5 order-md-12 order-sm-1">
-                            <a href="{{ !is_null(auth()->user()) ? route('enrollment.register', ['course' => $course->id]) :route('enrollment.registration', ['course' => $course->id]) }}" class="btn btn-dark btn-lg w-100 mb-3">Enroll Now</a>
+                            <a href="{{ route('enrollment.registration', ['course' => $course->id]) }}" class="btn btn-dark btn-lg w-100 mb-3">Enroll Now</a>
                             <div class="d-flex my-4 align-items-center">
                                 <span class="material-icons-round text-secondary mr-2">sell</span>
                                 @if ($course->price != 0)
