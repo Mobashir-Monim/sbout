@@ -45,6 +45,12 @@
                             <span>Logout</span>
                         </a>
                     </li>
+                    <li class="nav-item float-right mx-3">
+                        <a class="nav-link d-flex align-items-center {{ startsWith(request()->url(), route('course.index')) ? 'active' : '' }}" href="{{ route('course.index') }}">
+                            <span class="material-icons-round mr-2">menu_book</span>
+                            <span>Courses</span>
+                        </a>
+                    </li>
                 </ul>
             @else
                 <span class="navbar-brand col-md-3 col-lg-2 mr-0 px-3">

@@ -2,6 +2,7 @@
     <div class="sidebar-sticky pt-3">
         <ul class="nav flex-column">
             @include('layouts.nav.items.course')
+            @include('layouts.nav.items.enrolled')
             {{-- @include('layouts.nav.items.mapper')
             @include('layouts.nav.items.formatter')
             @include('layouts.nav.items.evaluations')
