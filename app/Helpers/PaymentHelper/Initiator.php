@@ -52,9 +52,9 @@ class Initiator extends Helper
 
     public function setMetaData()
     {
-        $this->gateway_initiation_data['success_url'] = $this->request->phone;
-        $this->gateway_initiation_data['fail_url'] = $this->request->phone;
-        $this->gateway_initiation_data['cancel_url'] = $this->request->phone;
+        $this->gateway_initiation_data['success_url'] = route('enrollment.register.success');
+        $this->gateway_initiation_data['fail_url'] = route('enrollment.register.fail');
+        $this->gateway_initiation_data['cancel_url'] = route('enrollment.register.cancel');
         // $this->gateway_initiation_data['ipn_url'] = $this->request->phone;
     }
 
