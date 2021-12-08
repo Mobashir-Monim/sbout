@@ -33,18 +33,17 @@ class EnrollmentController extends Controller
         return $helper->status['redirect'];
     }
 
-    public function enrollmentSucceeded(Course $course, Request $request)
+    public function enrollmentSucceedful(Course $course, Request $request)
     {
-        
+        return view('enrollment.messages.successful', [
+            'course' => $course
+        ]);
     }
 
-    public function enrollmentFailed(Course $course, Request $request)
+    public function enrollmentUnsuccessful(Course $course, Request $request)
     {
-
-    }
-
-    public function enrollmentCancelled(Course $course, Request $request)
-    {
-
+        return view('enrollment.messages.unsuccessful', [
+            'course' => $course
+        ]);
     }
 }
