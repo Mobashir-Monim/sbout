@@ -5,13 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Course;
 use App\Helpers\CourseHelper\Creator;
+use App\Helpers\CourseHelper\SearchHelper;
 
 class CourseController extends Controller
 {
     public function index()
     {
+        $helper = new SearchHelper;
+
         return view('course.index', [
-            'courses' => Course::orderBy('created_at', 'desc')->paginate('12')
+            'courses' => $helper->getCourses(),
+            'list' => $helper->getTypeList(),
         ]);
     }
 

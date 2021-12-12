@@ -1,6 +1,24 @@
 @extends('layouts.app')
 
 @section('content')
+    <div class="row mb-3">
+        <div class="col-md"></div>
+        <div class="col-md-8">
+            <form action="{{ route('course.index') }}" method="GET">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <select class="custom-select" name="type">
+                            {!! $list !!}
+                        </select>
+                    </div>
+                    <input type="text" class="form-control border-top border-left border-right" name="name" placeholder="Course" value="{{ is_null(request()->name) ? "" : request()->name }}">
+                    <div class="input-group-append">
+                        <button class="btn btn-dark">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
     <div class="row justify-content-center">
         @foreach ($courses as $course)
             <div class="col-md-4 mb-3 hoverable-card-container">
