@@ -11,6 +11,9 @@ class CoursePurchase extends Model
     use Concerns\UsesUuid;
 
     protected $guarded = [];
+    protected $casts = [
+        'ipn_data' => 'array',
+    ];
 
     public function setPriceAttribute($price)
     {
