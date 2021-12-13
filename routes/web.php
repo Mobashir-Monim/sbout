@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    $x = 'aaaababa';
+    dd(rtrim($x, 'a'));
     return view('landing');
 });
 

@@ -7,7 +7,7 @@ use Str;
 use GuzzleHttp\Client;
 use App\Models\CoursePurchase;
 
-class Initiator extends Helper
+class Initiator extends GatewayHelper
 {
     protected $gateway_initiation_data = [];
     protected $course;
@@ -18,11 +18,12 @@ class Initiator extends Helper
 
     public function __construct($user, $course)
     {
+        parent::__construct();
         $this->user = $user;
         $this->course = $course;
         $this->request = request();
-        $this->configInitiationData();
         $this->createCoursePurchase();
+        $this->configInitiationData();
         $this->initiateGateway();
     }
 
@@ -30,32 +31,49 @@ class Initiator extends Helper
     {
         $this->setStoreData();
         $this->setPriceData();
-        $this->setMetaData();
         $this->setCustomerData();
         $this->setProductData();
         $this->setShippingData();
+        $this->setMetaData();
+        $this->setAuthValues();
     }
 
     public function setStoreData()
     {
-        $this->gateway_initiation_data['store_id'] = config('payment-gateway.store.id');
-        $this->gateway_initiation_data['store_passwd'] = config('payment-gateway.store.secret');
+        $this->gateway_initiation_data['store_id'] = $this->getStoreID();
+        $this->gateway_initiation_data['store_passwd'] = $this->getStoreSecret();
     }
 
     public function setPriceData()
     {
         $this->gateway_initiation_data['total_amount'] = str_replace(',', '', $this->course->price);
         $this->gateway_initiation_data['currency'] = $this->course->currency;
-        $this->gateway_initiation_data['tran_id'] = $this->generateRandomTranxID();
+        $this->gateway_initiation_data['tran_id'] = $this->purchase->txid;
         $this->gateway_initiation_data['emi_option'] = 0;
     }
 
     public function setMetaData()
     {
-        $this->gateway_initiation_data['success_url'] = route('enrollment.register.success');
-        $this->gateway_initiation_data['fail_url'] = route('enrollment.register.fail');
-        $this->gateway_initiation_data['cancel_url'] = route('enrollment.register.cancel');
+        $this->gateway_initiation_data['success_url'] = route('payment-gateway.register.success', [
+                'course' => $this->course->id,
+                'purchase' => $this->purchase->id
+            ]);
+        $this->gateway_initiation_data['fail_url'] = route('payment-gateway.register.fail', [
+                'course' => $this->course->id,
+                'purchase' => $this->purchase->id
+            ]);
+        $this->gateway_initiation_data['cancel_url'] = route('payment-gateway.register.cancel', [
+                'course' => $this->course->id,
+                'purchase' => $this->purchase->id,
+            ]);
         // $this->gateway_initiation_data['ipn_url'] = $this->request->phone;
+    }
+
+    public function setAuthValues()
+    {
+        $this->gateway_initiation_data['value_a'] = hash('sha256', md5(config('payment-gateway.store.secret')) . md5($this->purchase->id));
+        $this->gateway_initiation_data['value_b'] = hash('sha256', md5(config('payment-gateway.store.secret')) . md5($this->purchase->created_at));
+        $this->gateway_initiation_data['value_c'] = hash('sha256', md5(config('payment-gateway.store.secret')) . md5($this->purchase->txid));
     }
 
     public function generateRandomTranxID()
@@ -97,10 +115,10 @@ class Initiator extends Helper
     {
         $purchase = [
             'course_id' => $this->course->id,
-            'txid' => $this->gateway_initiation_data['tran_id'],
+            'txid' => $this->generateRandomTranxID(),
             'status' => "Pending",
-            'price' => $this->gateway_initiation_data['total_amount'],
-            'currency' => $this->gateway_initiation_data['currency'],
+            'price' => str_replace(',', '', $this->course->price),
+            'currency' => $this->course->currency,
         ];
 
         if (!is_null(auth()->user())) {

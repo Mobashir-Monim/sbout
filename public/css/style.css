@@ -175,3 +175,8 @@ input[type=file] {
 .navbar-nav .nav-link.active {
     color: #007bff !important;
 }
+
+.input-group-prepend > .custom-select {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}

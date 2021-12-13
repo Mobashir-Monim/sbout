@@ -16,8 +16,4 @@ use Illuminate\Support\Facades\Route;
 Route::name('enrollment.')->prefix('/enrollment')->group(function () {
     Route::get('/registration/{course}', [App\Http\Controllers\EnrollmentController::class, 'registration'])->name('registration');
     Route::post('/register/{course}', [App\Http\Controllers\EnrollmentController::class, 'register'])->name('register');
-    Route::get('/register/{course}/success', [App\Http\Controllers\EnrollmentController::class, 'enrollmentSucceedful'])->name('register.success');
-    Route::get('/register/{course}/fail', [App\Http\Controllers\EnrollmentController::class, 'enrollmentUnsuccessful'])->name('register.fail');
-    Route::get('/register/{course}/cancel', [App\Http\Controllers\EnrollmentController::class, 'enrollmentUnsuccessful'])->name('register.cancel');
-
 });

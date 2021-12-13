@@ -32,18 +32,4 @@ class EnrollmentController extends Controller
 
         return $helper->status['redirect'];
     }
-
-    public function enrollmentSucceedful(Course $course, Request $request)
-    {
-        return view('enrollment.messages.successful', [
-            'course' => $course
-        ]);
-    }
-
-    public function enrollmentUnsuccessful(Course $course, Request $request)
-    {
-        return view('enrollment.messages.unsuccessful', [
-            'course' => $course
-        ]);
-    }
 }
