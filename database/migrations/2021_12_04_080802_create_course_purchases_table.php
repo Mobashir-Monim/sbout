@@ -25,7 +25,6 @@ class CreateCoursePurchasesTable extends Migration
             $table->text('user_data')->nullable();
             $table->text('ipn_data')->nullable();
             $table->boolean('is_completed')->default(false);
-            $table->string('validation_status')->default('Pending');
             $table->timestamps();
         });
     }

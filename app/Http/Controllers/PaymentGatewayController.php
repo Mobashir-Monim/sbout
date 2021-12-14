@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Course;
 use App\Models\CoursePurchase;
+use App\Helpers\PaymentHelper\Verifier;
 use App\Helper\PaymentHelper\IPNHelper;
 
 class PaymentGatewayController extends Controller
@@ -16,9 +17,9 @@ class PaymentGatewayController extends Controller
 
     public function enrollmentSucceedful(Course $course, CoursePurchase $purchase, Request $request)
     {
+        $verifier = new Verifier($course, $purchase);
 
-        dd("");
-
+        dd($verifier->verifySign());
         return view('enrollment.messages.successful', [
             'course' => $course
         ]);
