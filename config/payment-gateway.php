@@ -3,7 +3,8 @@
 return [
     "store" => [
         "id" => env('PAYMENT_GATEWAY_ID'),
-        "secret" => env('PAYMENT_GATEWAY_SECRET')
+        "secret" => env('PAYMENT_GATEWAY_SECRET'),
+        "https" => env('PAYMENT_GATEWAY_HTTPS'),
     ],
     "base_url" => env('PAYMENT_GATEWAY_BASE'),
     "url" => [

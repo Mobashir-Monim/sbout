@@ -132,7 +132,7 @@ class Initiator extends GatewayHelper
 
     public function initiateGateway()
     {
-        $client = new Client(['verify' => false]);
+        $client = new Client(['verify' => config('payment-gateway.store.https')]);
         $response = $client->request(
             'POST',
             config('payment-gateway.api.initiate'),
