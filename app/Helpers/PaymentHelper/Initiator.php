@@ -124,7 +124,7 @@ class Initiator extends GatewayHelper
         if (!is_null(auth()->user())) {
             $purchase['user_id'] = $this->user['id'];
         } else {
-            $purchase['user_data'] = json_encode($this->user);
+            $purchase['user_data'] = $this->user;
         }
 
         $this->purchase = CoursePurchase::create($purchase);
