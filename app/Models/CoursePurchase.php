@@ -12,7 +12,9 @@ class CoursePurchase extends Model
 
     protected $guarded = [];
     protected $casts = [
-        'ipn_data' => 'array',
+        'tx_data' => 'array',
+        'user_data' => 'array',
+        'validation_data' => 'array',
     ];
 
     public function setPriceAttribute($price)
