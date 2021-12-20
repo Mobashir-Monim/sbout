@@ -23,8 +23,10 @@ class CreateCoursePurchasesTable extends Migration
             $table->string('currency');
             $table->string('session_id')->nullable();
             $table->text('user_data')->nullable();
-            $table->text('ipn_data')->nullable();
+            $table->text('tx_data')->nullable();
             $table->boolean('is_completed')->default(false);
+            $table->string('flag')->nullable();
+            $table->json('validation_data')->nullable();
             $table->timestamps();
         });
     }
