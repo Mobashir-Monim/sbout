@@ -6,30 +6,34 @@ use Illuminate\Http\Request;
 use App\Models\Course;
 use App\Models\CoursePurchase;
 use App\Helpers\PaymentHelper\Verifier;
-use App\Helper\PaymentHelper\IPNHelper;
+use App\Helpers\PaymentHelper\NotificationHelper;
 
 class PaymentGatewayController extends Controller
 {
     public function storeIPN(Course $course, CoursePurchase $purchase, Request $request)
     {
-        $helper = new IPNHelper($course, $purchase);
+        $notifier = new NotificationHelper($course, $purchase);
+
+        return $notifier->getSuccessStatus();
     }
 
     public function enrollmentSucceedful(Course $course, CoursePurchase $purchase, Request $request)
     {
-        $verifier = new Verifier($course, $purchase);
+        $notifier = new NotificationHelper($course, $purchase);
 
-        dd($verifier->verifySign());
         return view('enrollment.messages.successful', [
-            'course' => $course
+            'course' => $course,
+            'message' => $notifier->getMessage()
         ]);
     }
 
     public function enrollmentUnsuccessful(Course $course, CoursePurchase $purchase, Request $request)
     {
-        dd($request->all(), $course, $purchase, $request['val_id']);
+        $notifier = new NotificationHelper($course, $purchase);
+        
         return view('enrollment.messages.unsuccessful', [
-            'course' => $course
+            'course' => $course,
+            'message' => $notifier->getMessage()
         ]);
     }
 }
