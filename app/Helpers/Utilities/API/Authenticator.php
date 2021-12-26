@@ -32,14 +32,20 @@ class Authenticator extends Helper
             $variable = $this->config->variable;
             $variable['access_token'] = [
                 'token' => null,
+                'issued_at' => null,
                 'expires_at' => null,
             ];
             $this->config->variable = $variable;
             $this->config->save();
         }
 
-        if (!is_null($this->config->variable['access_token']['expires_at']) && !is_null($this->config->variable['access_token']['token']))
-            return Carbon::parse($this->config->variable['access_token']['expires_at']) > Carbon::now();
+        $iat = $this->config->variable['access_token']['issued_at'];
+        $xat = $this->config->variable['access_token']['expires_at'];
+
+        if (!is_null($iat) && Carbon::parse($iat)->diffInDays(Carbon::now(), false) > -7) {
+            if (!is_null($xat) && !is_null($this->config->variable['access_token']['token']))
+                return Carbon::parse($xat) > Carbon::now();
+        }
 
         return false;
     }
