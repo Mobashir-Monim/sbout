@@ -15,6 +15,7 @@ class CreateConfigsTable extends Migration
     {
         Schema::create('configs', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->string('display_name');
             $table->string('name');
             $table->text('description');
             $table->json('variable');
