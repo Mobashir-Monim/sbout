@@ -180,3 +180,23 @@ input[type=file] {
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
 }
+
+.add-btn {
+    position: fixed;
+    bottom: 25px;
+    right: 20px;
+    width: 3em;
+    height: 3em;
+    border-radius: 50%;
+    text-align: center;
+    padding: 5px !important;
+    vertical-align: middle !important;
+    /* background-image: url('../img/plus.svg'); */
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-origin: content-box !important;
+    transition: ease-in-out 0.25s;
+    box-shadow: 3px 3px 5px #6c757d;
+    z-index: 3 !important;
+}

@@ -6,6 +6,7 @@
             @auth
                 @include('layouts.nav.items.dashboard')
                 @include('layouts.nav.items.enrolled')
+                @include('layouts.nav.items.config')
                 @include('layouts.nav.items.logout')
             @else
                 @include('layouts.nav.items.login')
