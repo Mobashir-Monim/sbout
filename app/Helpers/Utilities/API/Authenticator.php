@@ -53,7 +53,7 @@ class Authenticator extends Helper
     public function getTokenWithSimpleOAuth()
     {
         return $this->recordAccessToken($this->callEndpoint(
-            $this->config->variable['description']['token_endpoint'],
+            $this->config->variable['description']['endpoints']['access_token']['endpoint'],
             [
                 "client_id" => $this->getClientID(),
                 "client_secret" => $this->getClientSecret(),
@@ -82,7 +82,7 @@ class Authenticator extends Helper
     public function requestForAuthentication()
     {
         return $this->callEndpoint(
-            $this->config->variable['description']['auth_challenge_endpoint'],
+            $this->config->variable['description']['endpoints']['auth_challenge_endpoint']['endpoint'],
             [
                 "client_id" => $this->getClientID(),
                 "grant_type" => "trustless_client_credentials"
@@ -106,7 +106,7 @@ class Authenticator extends Helper
         }
 
         return $this->callEndpoint(
-            $this->config->variable['description']['token_challenge_endpoint'],
+            $this->config->variable['description']['endpoints']['token_challenge_endpoint']['endpoint'],
             $request_params
         );
     }
@@ -116,6 +116,7 @@ class Authenticator extends Helper
         $variable = $this->config->variable;
         $variable['access_token'] = [
             'token' => $response['access_token'],
+            'issued_at' => Carbon::now(),
             'expires_at' => Carbon::now()->addSeconds($response['expires_in'] - 30),
         ];
         $this->config->variable = $variable;
