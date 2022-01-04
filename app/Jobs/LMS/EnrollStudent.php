@@ -13,14 +13,18 @@ class EnrollStudent implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    protected $user;
+    protected $course;
+
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($user, $course)
     {
-        //
+        $this->user = $user;
+        $this->course = $course;
     }
 
     /**
