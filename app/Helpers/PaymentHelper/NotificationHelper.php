@@ -41,7 +41,7 @@ class NotificationHelper extends GatewayHelper
 
             if ($this->payment_success) {
                 if ($this->payment_data['risk_level'] == 0) 
-                    dispatch(new EnrollStudent($this->fetchStudent()));
+                    dispatch(new EnrollStudent($this->fetchStudent(), $this->course));
             }
         }
     }
